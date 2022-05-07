@@ -58,8 +58,19 @@ class Entrega {
         BiPredicate<Integer, Integer> p,
         Predicate<Integer> q,
         Predicate<Integer> r) {
+        
+        for(int i = 0; i < universe.length;i++){
+            for(int j = 0; j < universe.length;j++){
+                // p -> j == !p || j
+                
+                if( !(!p.test(universe[i],universe[j]) || (q.test(universe[i]) && r.test(universe[j]))) ){
+                    return false;
 
-      return false; // TO DO
+                }
+            }
+        }    
+
+      return true; // TO DO
     }
 
     /*
