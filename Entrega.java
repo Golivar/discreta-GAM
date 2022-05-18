@@ -100,7 +100,7 @@ class Entrega {
                 }
             }
 
-            return true; // TO DO
+            return true;
         }
 
         /*
@@ -113,18 +113,29 @@ class Entrega {
         static boolean exercici3(int[][] universe) {
 
             for (int i = 0; i < universe.length; i++) {
-
+                boolean alguno = false;
                 for (int j = 0; j < universe.length; j++) {
-                    if(contains(universe[j], universe[i])){
-                        return false;
+                    alguno = j != i && contains(universe[j], universe[i]);
+                    if (alguno) {
+                        break;
+                    }
+                    if (j == universe.length - 1) {
+                        return true;
                     }
                 }
 
             }
-            return true; // TO DO
+            return false;
         }
 
         static boolean contains(int[] x, int[] y) {
+            if (y.length == 0) {
+                return true;
+            }
+
+            if(x.length == 0){
+                return false;
+            }
 
             boolean[] y_encontrados = new boolean[y.length];
             for (int i = 0; i < y_encontrados.length; i++) {
@@ -133,12 +144,16 @@ class Entrega {
 
             for (int i = 0; i < y.length; i++) {
 
-                for (int j = 0; !y_encontrados[i] && j < x.length; j++) {
-                    y_encontrados[i] = (x[j] == y[i]);
+                for (int j = 0; j < x.length; j++) {
+                    if (x[j] == y[i]) {
+                        y_encontrados[i] = true;
+                        break;
+                    }
+
                 }
             }
-            for(int i = 0;i<y_encontrados.length;i++){
-                if(!y_encontrados[i]){
+            for (int i = 0; i < y_encontrados.length; i++) {
+                if (!y_encontrados[i]) {
                     return false;
                 }
             }
