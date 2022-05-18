@@ -54,31 +54,49 @@ class Entrega {
      * És cert que ∀x,y. P(x,y) -> Q(x) ^ R(y) ?
      */
     static boolean exercici1(
-        int[] universe,
-        BiPredicate<Integer, Integer> p,
-        Predicate<Integer> q,
-        Predicate<Integer> r) {
-        
-        for(int i = 0; i < universe.length;i++){
-            for(int j = 0; j < universe.length;j++){
-                // p -> j == !p || j
-                
-                if( !(!p.test(universe[i],universe[j]) || (q.test(universe[i]) && r.test(universe[j]))) ){
-                    return false;
+                int[] universe,
+                BiPredicate<Integer, Integer> p,
+                Predicate<Integer> q,
+                Predicate<Integer> r) {
 
+            for (int i = 0; i < universe.length; i++) {
+                for (int j = 0; j < universe.length; j++) {
+                    // p -> j == !p || j
+
+                    if (!(!p.test(universe[i], universe[j]) || (q.test(universe[i]) && r.test(universe[j])))) {
+                        return false;
+
+                    }
                 }
             }
-        }    
 
-      return true; // TO DO
-    }
+            return true; // TO DO
+        }
 
-    /*
-     * És cert que ∃!x. ∀y. Q(y) -> P(x) ?
-     */
-    static boolean exercici2(int[] universe, Predicate<Integer> p, Predicate<Integer> q) {
-      return false; // TO DO
-    }
+        /*
+         * És cert que ∃!x. ∀y. Q(y) -> P(x) ?
+         */
+        static boolean exercici2(int[] universe, Predicate<Integer> p, Predicate<Integer> q) {
+
+            
+            for (int y = 0; y < universe.length; y++) {
+                boolean first = true;
+                for (int x = 0; x < universe.length; x++) {
+                    if (!q.test(universe[y]) || p.test(universe[x])) {
+                        if (first) {
+                            first = false;
+                        } else {
+                            return false;
+                        }
+                    }
+                    if(x == universe.length -1 && first){
+                        return false;
+                    }
+                }
+            }
+
+            return true; // TO DO
+        }
 
     /*
      * És cert que ¬(∃x. ∀y. y ⊆ x) ?
