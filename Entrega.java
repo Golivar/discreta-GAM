@@ -394,6 +394,47 @@ class Entrega {
      *
      */
     static class Tema3 {
+
+        public int[] algoritmo_euclides(int a, int b) {
+
+            int q, r, x1, x2, y1, y2, temp;
+
+            a = 642;
+            b = 222;
+
+            x1 = 1;
+            x2 = 0;
+            y1 = 0;
+            y2 = 1;
+
+            r = a % b;
+            q = (a - r) / b;
+
+            while (r != 0) {
+
+                temp = x2;
+                x2 = x1 - (q * x2);
+                x1 = temp;
+
+                temp = y2;
+                y2 = y1 - (q * y2);
+                y1 = temp;
+
+                temp = r;
+                r = b % r;
+                q = (b - r) / temp;
+                b = temp;
+
+            }
+            int[] resultados = new int[4];
+            resultados[0] = b;
+            resultados[1] = q;
+            resultados[2] = x2;
+            resultados[3] = y2;
+
+            return resultados;
+        }
+
         /*
          * Donat `a`, `b` retornau el màxim comú divisor entre `a` i `b`.
          *
