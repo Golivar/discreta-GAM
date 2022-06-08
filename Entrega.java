@@ -409,12 +409,9 @@ class Entrega {
      */
     static class Tema3 {
 
-        public int[] algoritmo_euclides(int a, int b) {
+        public static int[] algoritmo_euclides(int a, int b) {
 
             int q, r, x1, x2, y1, y2, temp;
-
-            a = 642;
-            b = 222;
 
             x1 = 1;
             x2 = 0;
@@ -473,7 +470,24 @@ class Entrega {
          * Retornau l'invers sempre entre 1 i `n-1`, en cas que no existeixi retornau -1
          */
         static int exercici3(int a, int n) {
-            return -1; // TO DO
+
+            int[] res_eculid = algoritmo_euclides(-1*n,a);
+            res_eculid[2] *= -1;
+            res_eculid[3] *= -1;
+            if((res_eculid[2]*n * -1) + (res_eculid[3] * a) == 1){
+                int y = res_eculid[3];
+                int sig = 1;
+                int c = 1;
+                while(!(y >=0)){
+                    y = y - (c*n*sig);
+                    if(y < res_eculid[3]){
+                        sig = -1;
+                    }
+                }
+
+                return y;
+            }
+            return -1;
         }
 
         /*
@@ -496,7 +510,7 @@ class Entrega {
             assertThat(
                     exercici2(4, 2, 2));
             assertThat(
-                    !exercici2(6, 2, 1));
+                    !exercici2(6, 2, 1)); 
             // Exercici 3
             // invers de `a` mòdul `n`
             assertThat(exercici3(2, 5) == 3);
