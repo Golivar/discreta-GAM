@@ -266,7 +266,21 @@ class Entrega {
          * de menor a major.
          */
         static int[] exercici3(int[] dom, int[] codom, Function<Integer, Integer> f, int y) {
-            return new int[] {}; // TO DO
+            int[] antiimatge_llarga = new int[dom.length];
+            int a_counter = 0;
+
+            for (int i = 0; i < dom.length; i++) {
+                if (f.apply(dom[i]) == y) {
+                    antiimatge_llarga[a_counter++] = dom[i];
+                }
+            }
+
+            int[] antiimatge = new int[a_counter];
+            for (int i = 0; i < antiimatge.length; i++) {
+                antiimatge[i] = antiimatge_llarga[i];
+            }
+            Arrays.sort(antiimatge);
+            return antiimatge;
         }
 
         /*
